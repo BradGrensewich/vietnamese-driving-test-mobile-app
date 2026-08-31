@@ -1,0 +1,3 @@
+const STORAGE_KEY="vn-driving-practice-v3";
+function loadState(){try{const s=JSON.parse(localStorage.getItem(STORAGE_KEY)||"null")||{};return{completed:+s.completed||0,customVocab:Array.isArray(s.customVocab)?s.customVocab:[],customPhrases:Array.isArray(s.customPhrases)?s.customPhrases:[],settings:{vocabMode:s.settings?.vocabMode==="recall"?"recall":"choice",phraseMode:s.settings?.phraseMode==="recall"?"recall":"choice",choices:Math.min(6,Math.max(3,+s.settings?.choices||4))}}}catch{return{completed:0,customVocab:[],customPhrases:[],settings:{vocabMode:"choice",phraseMode:"choice",choices:4}}}}
+function saveState(s){localStorage.setItem(STORAGE_KEY,JSON.stringify(s))}
