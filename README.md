@@ -1,30 +1,21 @@
-# Vietnamese Driving Practice v2
+# Vietnamese Driving Practice
 
-Open `index.html` for the web app.
+Offline Vietnamese driving-theory vocabulary and question practice app.
 
-## Practice modes
+## Bulk-add vocabulary from clipboard
 
-Vocabulary and phrases can each be set independently to:
-- Multiple choice
-- Recall + Reveal Answer
+Open **Word & Phrase Banks** from the home screen. Under **Paste vocabulary in bulk**, paste CSV text containing two fields per line:
 
-Multiple-choice lessons can use 3, 4, 5, or 6 answers.
+```text
+"Câu ...","Question ..."
+"... nào dưới đây?","which ... below?"
+"Biển nào báo hiệu ...?","Which sign indicates ...?"
+```
 
-## Custom banks
+Press **Add all to Word Bank**. Every valid pair is appended to the custom Word Bank and saved immediately in the app's local storage. Existing custom words are not replaced.
 
-Add, edit, and delete words and phrases from the in-app Word & Phrase Banks screen. Custom items are stored in browser localStorage and immediately enter future lessons.
+The parser supports quoted CSV fields, commas inside fields, doubled quotes, and Windows/Unix line endings. A header such as `Vietnamese,English` is also accepted and skipped.
 
-## Android 12
+## Android build
 
-The `android/` directory is a lightweight offline Android WebView project. It contains the same web app bundled locally, so no internet permission is needed.
-
-Open the `android/` directory in Android Studio and build the APK. Android 12 is supported.
-
-## Source
-
-- `index.html`
-- `css/style.css`
-- `js/app.js`
-- `js/storage.js`
-- `data/study-data.js`
-- `android/`
+The Android wrapper is under `android/`. GitHub Actions can build the debug APK. The workflow uses `android-actions/setup-android@v4` with default package installation disabled, avoiding the obsolete `tools` SDK package.
